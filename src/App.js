@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="gray-background">
         <img src={logo} let="logo" />
-        <h2>Rain Forest Alliance Certified1ddddddssss2222s133333___git_hub</h2>
+        <h2>Rain Forest Alliance Certified1ddddddssss2222s133333___git_hub </h2>
 
     </div>
   );
