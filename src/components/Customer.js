@@ -4,8 +4,8 @@ class Customer extends Component {
     render(){
       return(
           <div>
-            <div>hi, component</div>
-            <div>hi, component</div>
+            <div>hi,  </div>
+            <div>hi, component1</div>
           </div>
       );
     }
