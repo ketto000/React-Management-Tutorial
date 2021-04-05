@@ -1,14 +1,17 @@
-import logo from './logo.svg';
+import React,{Component} from 'react';
+// import logo from './logo.svg';
 import './App.css';
+import Customer from './components/Customer';
 
-function App() {
-  return (
-    <div className="gray-background">
-        <img src={logo} let="logo" />
-        <h2>Rain Forest Alliance Certified1_git_hub </h2>
-
-    </div>
-  );
+class App extends Component{
+    render(){
+        return(
+        <div className="gray-background">
+            <h2>Rain Forest Alliance Certified1_git_hub </h2>
+            <Customer/>
+        </div>
+        );
+    }
 }
 
 export default App;
