@@ -11,8 +11,7 @@ import TableCell from '@material-ui/core/TableCell';
 
 
 
-//css사용
-//https://material-ui.com/components/tables/
+
 
 const styles = theme => ({
     root: {
@@ -72,12 +71,14 @@ class App extends Component{
                         <Paper className ={ classes.root } >
                             <Table className ={ classes.table }>
                                 <TableHead>
-                                    <TableCell>번호</TableCell>
-                                    <TableCell>이미지</TableCell>
-                                    <TableCell>이름</TableCell>
-                                    <TableCell>생년월일</TableCell>
-                                    <TableCell>성별</TableCell>
-                                    <TableCell>직업</TableCell>
+                                    <TableRow>
+                                        <TableCell>번호</TableCell>
+                                        <TableCell>이미지</TableCell>
+                                        <TableCell>이름</TableCell>
+                                        <TableCell>생년월일</TableCell>
+                                        <TableCell>성별</TableCell>
+                                        <TableCell>직업</TableCell>
+                                    </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     {
