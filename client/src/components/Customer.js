@@ -18,30 +18,30 @@ class Customer extends React.Component{
         );
     }
 }
-
-class CustomreProfile extends React.Component{
-    render(){
-        return(
-            <div>
-                <img src={this.props.image} alt="profile" width="150" height="200"/>
-                <h2>{this.props.name}({this.props.id})</h2>
-            </div>
-        );
-    }
-}
-
-class CustomerInfo extends React.Component{
-    render(){
-        return(
-            <div>
-                <p>name:{this.props.name}</p>
-                <p>birthday:{this.props.birthday}</p>
-                <p>gender:{this.props.gender}</p>
-                <p>jop:{this.props.jop}</p>
-            </div>
-        );
-    }
-}
+//
+// class CustomreProfile extends React.Component{
+//     render(){
+//         return(
+//             <div>
+//                 <img src={this.props.image} alt="profile" width="150" height="200"/>
+//                 <h2>{this.props.name}({this.props.id})</h2>
+//             </div>
+//         );
+//     }
+// }
+//
+// class CustomerInfo extends React.Component{
+//     render(){
+//         return(
+//             <div>
+//                 <p>name:{this.props.name}</p>
+//                 <p>birthday:{this.props.birthday}</p>
+//                 <p>gender:{this.props.gender}</p>
+//                 <p>jop:{this.props.jop}</p>
+//             </div>
+//         );
+//     }
+// }
 
 
 export default Customer;
