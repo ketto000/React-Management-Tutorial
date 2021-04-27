@@ -8,6 +8,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+
 
 const styles = theme => ({
     root: {
@@ -16,26 +20,53 @@ const styles = theme => ({
     },
     table: {
         minWidth: 1080
+    },
+    progress:{
+        margin: theme.spacing.unit * 2
     }
+
 });
+
+//
+// 1) constructor()
+// 2) componentWillMount()
+// 3) render()
+// 4) componentDidMount()
+// props or state => shouldComponentUpdate()
 
 
 
 class App extends Component{
 
     state = {
-        customers: ""
+        customers: "",
+        completed: 0
     }
+
     componentDidMount() {
-        this.callApi()
-            .then(res => this.setState({customers:res}))
-            .catch(err => console.log(err));
+        this.timer = setInterval(this.progress, 800);
+            // this.callApi()
+            // .then(res => this.setState({customers:res}))
+            // .catch(err => console.log(err));
     }
+
+    // setTimeout(function(){   }, 1000);
+
     callApi = async  () =>  {
         const response = await fetch('/api/customers');
         const body = await response.json();
         return body;
     }
+
+    progress = () => {
+        const { completed } =this.state;
+        this.setState({completed : completed >= 100 ? 0 : completed + 10});
+        // console.log(completed);
+    }
+
+
+
+
 //proxy 문제 발생
 // npm install http-proxy-middleware --save 설치
 // src -> setupProxy.js 생성후 작성
@@ -61,14 +92,21 @@ class App extends Component{
                                 </TableHead>
                                 <TableBody>
                                     {
-
-
-                                     this.state.customers ?   this.state.customers.map( c => {
+                                     this.state.customers ? this.state.customers.map( c => {
                                             return(
                                                     <Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} jop={c.jop}/>
                                             );
-                                        }) : ""}
+                                        }) :
+                                        <TableRow>
+                                            <TableCell colSpan="6" align="center">
+                                                {/*<LinearProgress className={classes.progress} variant="determinate" value={this.state.completed} />*/}
+                                                <CircularProgress   className={classes.progress} variant="determinate" value={this.state.completed} />
+
+                                            </TableCell>
+                                        </TableRow>
+
                                     }
+
                                 </TableBody>
                             </Table>
                         </Paper>
@@ -79,3 +117,4 @@ class App extends Component{
 }
 
                 export default withStyles(styles)(App);
+
