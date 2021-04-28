@@ -11,7 +11,7 @@ import TableCell from '@material-ui/core/TableCell';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-
+// https://material-ui.com/components/progress/
 
 const styles = theme => ({
     root: {
@@ -24,7 +24,6 @@ const styles = theme => ({
     progress:{
         margin: theme.spacing.unit * 2
     }
-
 });
 
 //
@@ -34,7 +33,10 @@ const styles = theme => ({
 // 4) componentDidMount()
 // props or state => shouldComponentUpdate()
 
-
+function sleep(ms) {
+    const wakeUpTime = Date.now() + ms
+    while (Date.now() < wakeUpTime) {}
+}
 
 class App extends Component{
 
@@ -45,14 +47,16 @@ class App extends Component{
 
     componentDidMount() {
         this.timer = setInterval(this.progress, 800);
-            // this.callApi()
-            // .then(res => this.setState({customers:res}))
-            // .catch(err => console.log(err));
+        this.callApi()
+            .then(res => this.setState({customers:res}))
+            .catch(err => console.log(err));
     }
 
     // setTimeout(function(){   }, 1000);
 
     callApi = async  () =>  {
+        // sleep(3000);
+
         const response = await fetch('/api/customers');
         const body = await response.json();
         return body;
@@ -66,12 +70,11 @@ class App extends Component{
 
 
 
-
 //proxy 문제 발생
 // npm install http-proxy-middleware --save 설치
 // src -> setupProxy.js 생성후 작성
 
-
+//npm install --save mysql
     render(){
             const { classes } = this.props;
             return(

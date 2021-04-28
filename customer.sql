@@ -1,0 +1,8 @@
+CREATE TABLE CUSTOMER(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    image VARCHAR(1024),
+    name VARCHAR(64),
+    birthday VARCHAR(64),
+    gender VARCHAR(64),
+    job VARCHAR(64)
+) DEFAULT CHARACTER SET UTF8 COLLATE utf8_general_ci;
