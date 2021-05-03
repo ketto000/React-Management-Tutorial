@@ -18,7 +18,9 @@ class CustomerAdd extends Component{
             e.preventDefault()
             this.addCustomer()
                 .then((response) => {
-                        console.log(response.data);
+
+                        this.props.stateRefresh(); //새로고침
+                         // console.log(response.data);
                 })
 
             this.setState( {
@@ -29,8 +31,7 @@ class CustomerAdd extends Component{
                 job : '',
                 fileName : ''
             })
-
-            window.location.reload();
+           
         }
 
         handleFileChange = (e) =>{
@@ -51,6 +52,7 @@ class CustomerAdd extends Component{
 
 
         addCustomer = () => {
+            // const url ='http://127.0.0.1:5000/api/customers';
             const url ='/api/customers';
             const formData = new FormData();
             formData.append('image', this.state.file);
@@ -69,7 +71,7 @@ class CustomerAdd extends Component{
 
         render(){
             return(
-                <form onSubmit={this.handleFromSubmit}>
+                <form onSubmit={this.handleFromSubmit} >
                     <h1>고객추가</h1>
                     프로필 이미지:<input type="file" name="file" file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange} />
                     이름 : <input type="text" name="userName" value={this.state.userName} onChange={this.handleValueChange} />

@@ -28,7 +28,7 @@ const styles = theme => ({
 
 //
 // 1) constructor()
-// 2) componentWillMount()
+// 2) static getDerivedStateFromProps()
 // 3) render()
 // 4) componentDidMount()
 // props or state => shouldComponentUpdate()
@@ -36,13 +36,31 @@ const styles = theme => ({
 
 class App extends Component{
 
-    state = {
-        customers: "",
-        completed: 0
+
+    constructor(props){
+        super(props);
+        this.state = {
+            customers : '',
+            completed: 0
+        }
     }
 
+    stateRefresh = () => {
+        this.setState({
+            customers: '',
+            completed: 0
+        });
+
+        this.callApi()
+            .then(res => this.setState({customers:res}))
+            .catch(err => console.log(err));
+    }
+
+
+
+
     componentDidMount() {
-        this.timer = setInterval(this.progress, 800);
+        // this.timer = setInterval(this.progress, 800);
         this.callApi()
             .then(res => this.setState({customers:res}))
             .catch(err => console.log(err));
@@ -58,10 +76,11 @@ class App extends Component{
     }
 
     progress = () => {
-        const { completed } =this.state;
+        const { completed } =this.state.completed;
         this.setState({completed : completed >= 100 ? 0 : completed + 10});
-        // console.log(completed);
+         console.log(completed);
     }
+
 
 
 
@@ -76,7 +95,7 @@ class App extends Component{
             <div className="gray-background">
             <h2>Rain Forest Alliance Certified1_git_hub </h2>
 
-                <CustomerAdd/>
+                <div>
                         <Paper className ={ classes.root } >
                             <Table className ={ classes.table }>
                                 <TableHead>
@@ -93,7 +112,7 @@ class App extends Component{
                                     {
                                      this.state.customers ? this.state.customers.map( c => {
                                             return(
-                                                    <Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} jop={c.jop}/>
+                                                    <Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job}/>
                                             );
                                         }) :
                                         <TableRow>
@@ -107,9 +126,9 @@ class App extends Component{
                                 </TableBody>
                             </Table>
                         </Paper>
+                </div>
 
-
-
+                <CustomerAdd stateRefresh={this.stateRefresh} />
 
                 < /div>
 
