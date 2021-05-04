@@ -95,7 +95,7 @@ class App extends Component{
             <div className="gray-background">
             <h2>Rain Forest Alliance Certified1_git_hub </h2>
 
-                <div>
+                <div className="list_box">
                         <Paper className ={ classes.root } >
                             <Table className ={ classes.table }>
                                 <TableHead>
@@ -106,13 +106,14 @@ class App extends Component{
                                         <TableCell>생년월일</TableCell>
                                         <TableCell>성별</TableCell>
                                         <TableCell>직업</TableCell>
+                                        <TableCell>설정</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     {
                                      this.state.customers ? this.state.customers.map( c => {
                                             return(
-                                                    <Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job}/>
+                                                    <Customer stateRefresh={this.stateRefresh} key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job}/>
                                             );
                                         }) :
                                         <TableRow>
